@@ -1,0 +1,152 @@
+.pkm_card {
+  text-align: center;
+  min-width: 10rem;
+  max-width: 12.5rem;
+  min-height: 10rem;
+  max-height: 10rem;
+  margin: auto;
+  display: flex;
+  margin: 0.45rem;
+  border-radius: 1.25rem;
+  position: relative;
+  justify-content: center;
+  perspective: 2500px;
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  text-decoration: none !important;
+}
+
+.card_header {
+  max-width: 100%;
+  font-weight: 400;
+  background-color: rgba(40, 40, 40, 0.85);
+  border-top-left-radius: 1.15rem !important;
+  border-top-right-radius: 1.15rem !important;
+  box-shadow: rgba(0, 0, 0, 0.46) 0px 7.5px 10px 1px;
+  letter-spacing: 1px;
+  color: #b9b18e;
+  height: 2rem;
+  width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.card_body {
+  align-items: center;
+  display: flex;
+}
+
+.img {
+  height: auto;
+  max-height: 17vw;
+  /* max-width: 16rem; */
+  width: auto;
+  padding: 0.75rem;
+  border-radius: 1.45rem;
+}
+
+.wrapper {
+  transition: all 0.5s;
+  position: relative;
+  width: 100%;
+  z-index: -1;
+  display: flex;
+}
+
+.pkm_card:hover .wrapper {
+  transform: perspective(100px) translateY(-5%) rotateX(0deg) translateZ(0);
+}
+
+.wrapper::before,
+.wrapper::after {
+  content: "";
+  opacity: 0;
+  width: 100%;
+  transition: all 0.5s;
+  position: absolute;
+  left: 0;
+}
+.wrapper::before {
+  top: 0;
+
+  height: 100%;
+}
+.wrapper::after {
+  bottom: 0;
+  opacity: 1;
+}
+
+.pkm_card:hover .logo {
+  opacity: 0;
+  transition: all 0.5s;
+  margin: auto;
+}
+
+.pkm_card:hover .wrapper::before,
+.wrapper::after {
+  opacity: 0;
+}
+
+.pkm_card:hover .wrapper::after {
+  height: 120px;
+}
+
+.symbol {
+  width: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  position: absolute;
+  z-index: -1;
+}
+
+.pkm_card:hover .symbol {
+  opacity: 1 !important;
+  transform: translate3d(0%, -15%, 200px);
+}
+
+.pkm_card img {
+  margin: auto;
+  min-height: 2rem;
+  max-height: 5rem;
+  /* width: 6.5rem; */
+  /* height: 4rem; */
+}
+
+.flexed {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.flexed a {
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .pkm_card {
+    min-height: 35vw;
+    min-width: 34vw;
+    max-width: 42vw;
+    max-height: 36vw;
+    margin: 3vw auto;
+  }
+
+  .card_header {
+    margin: 0;
+    height: 10vw;
+    width: 100%;
+    /* border-radius: inherit; */
+  }
+
+  img {
+    height: auto;
+    width: 75%;
+    max-width: 35vw;
+    padding: 0.5vw;
+    border-radius: 1.45rem;
+  }
+}

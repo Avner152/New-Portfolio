@@ -1,0 +1,25 @@
+.card-img {
+  border-radius: 1.25rem !important;
+  max-width: 19rem;
+}
+.card_header {
+  max-width: 100%;
+  width: 265px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .card-img {
+    border-radius: 3vw !important;
+    padding: 2vw;
+  }
+  .card_header {
+    height: 6vw;
+    width: 100%;
+    padding: 1vw 3vw !important;
+  }
+}
