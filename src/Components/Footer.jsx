@@ -145,7 +145,7 @@ export default function Footer() {
         <Container>
           <Row>
             <Col sm={6}>
-              <p>Copyright © 2017. Your Company.</p>
+              <p>Copyright © 2023. PokeAvner.</p>
             </Col>
             <Col sm={6}></Col>
           </Row>

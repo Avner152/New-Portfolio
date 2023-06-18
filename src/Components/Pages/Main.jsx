@@ -24,6 +24,8 @@ import { searchString, nameList } from "../../redux/searchSlice";
 
 export default function Main() {
   const [randomPokemon, setRandomPokemon] = useState([]);
+  const [randomColor, setRandomColor] = useState("");
+  const [regen, setRegen] = useState(true);
   const isMobile =
     Bowser.getParser(window.navigator.userAgent).parsedResult.platform.type ===
     "mobile";
@@ -32,10 +34,8 @@ export default function Main() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (list.length > 0) {
-      let rand = 5 + Math.floor(Math.random() * 6);
+      let rand = 5 + Math.floor(Math.random() * 256);
       pokemon.card.all({ q: `name:${list[rand].name}` }).then((set) => {
-        // console.log("findCardsByName: ", set);
-
         setRandomPokemon(
           set
             .sort((c1, c2) => {
@@ -53,7 +53,7 @@ export default function Main() {
         );
       });
     }
-  }, [list]);
+  }, [list, regen]);
 
   useEffect(() => {
     if (randomPokemon.length < 6 && randomPokemon.length > 0) {
@@ -63,6 +63,11 @@ export default function Main() {
         setRandomPokemon(temp);
       }
     }
+  }, [randomPokemon]);
+
+  useEffect(() => {
+    if (randomPokemon.length)
+      setRandomColor(`var(--${randomPokemon[0].types[0]})`);
   }, [randomPokemon]);
 
   const desktopInit = () => {
@@ -391,21 +396,17 @@ export default function Main() {
 
   return (
     <>
-      {/* <br />
-      <br />
-      <br />
-      <Placeholder
-        as={Card}
-        animation="glow"
-        style={{ margin: "auto", width: "19rem", alignItems: "center" }}
+      <Button
+        className="regen_btn"
+        style={{
+          boxShadow: "unset",
+          backgroundColor: randomColor,
+          border: "3px solid #282828",
+        }}
+        onClick={() => setRegen(!regen)}
       >
-        <Placeholder
-          as={Card.Img}
-          src={bg}
-          animation="glow"
-          style={{ maxWidth: "19rem", borderRadius: "1rem" }}
-        />
-      </Placeholder> */}
+        Regenerate Pokemon!
+      </Button>
       {!isMobile ? desktopInit() : mobileInit()}
     </>
   );

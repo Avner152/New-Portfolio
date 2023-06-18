@@ -1,9 +1,9 @@
 .pkm_card {
   text-align: center;
   min-width: 10rem;
-  max-width: 12.5rem;
-  min-height: 10rem;
-  max-height: 10rem;
+  /* max-width: 12.5rem; */
+  /* min-height: 10rem; */
+  height: 30rem;
   margin: auto;
   display: flex;
   margin: 0.45rem;
@@ -25,17 +25,21 @@
   box-shadow: rgba(0, 0, 0, 0.46) 0px 7.5px 10px 1px;
   letter-spacing: 1px;
   color: #b9b18e;
-  height: 2rem;
-  width: 200px;
+  height: 4rem;
+  /* width: 200px; */
   text-overflow: ellipsis;
   overflow: hidden;
   position: relative;
   white-space: nowrap;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
 }
 
 .card_body {
   align-items: center;
+  justify-content: center;
   display: flex;
 }
 
@@ -51,7 +55,7 @@
 .wrapper {
   transition: all 0.5s;
   position: relative;
-  width: 100%;
+  /* width: 100%; */
   z-index: -1;
   display: flex;
 }
@@ -104,15 +108,7 @@
 
 .pkm_card:hover .symbol {
   opacity: 1 !important;
-  transform: translate3d(0%, -15%, 200px);
-}
-
-.pkm_card img {
-  margin: auto;
-  min-height: 2rem;
-  max-height: 5rem;
-  /* width: 6.5rem; */
-  /* height: 4rem; */
+  transform: translate3d(-100%, 0%, 0);
 }
 
 .flexed {
@@ -133,6 +129,14 @@
     max-width: 42vw;
     max-height: 36vw;
     margin: 3vw auto;
+  }
+
+  .pkm_card img {
+    margin: auto;
+    min-height: 2rem;
+    max-height: 5rem;
+    /* width: 6.5rem; */
+    /* height: 4rem; */
   }
 
   .card_header {

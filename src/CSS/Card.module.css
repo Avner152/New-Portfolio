@@ -4,7 +4,7 @@
 }
 .card_header {
   max-width: 100%;
-  width: 265px;
+  /* width: 265px; */
   text-overflow: ellipsis;
   overflow: hidden;
   position: relative;

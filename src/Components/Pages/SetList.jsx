@@ -12,11 +12,15 @@ export default function SetList() {
   const [cards, setCards] = useState([]);
   const { _set } = useParams();
   const dispatch = useDispatch();
-
+  var firstSetIs;
   useEffect(() => {
     pokemon.set.all({ q: `series:"${_set}"` }).then((sets) => {
-      console.log(sets); // "Base"
-      setCards(sets);
+      // Sort Sets by its Date...
+      setCards(
+        sets.sort(
+          (c1, c2) => new Date(c1.releaseDate) - new Date(c2.releaseDate)
+        )
+      );
     });
 
     dispatch(searchString(""));

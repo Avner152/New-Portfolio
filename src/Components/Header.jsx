@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { searchString, nameList } from "../redux/searchSlice";
 
 export default function Header() {
+  const [hamburgerOpened, setHamburgerOpened] = useState(false);
   const [profile, setProfile] = useState(null);
   const [provider, setProvider] = useState("");
   const [names, setNames] = useState([]);
@@ -63,16 +64,18 @@ export default function Header() {
     console.log(string, results);
   };
 
+  const hamburgerHandler = () => {
+    setHamburgerOpened(!hamburgerOpened);
+    console.log(hamburgerOpened);
+  };
+
   const handleOnHover = (result) => {
     // the item hovered
     console.log(result);
   };
 
   const handleOnSelect = (item) => {
-    // the item selected
     dispatch(searchString(item.name));
-    // console.log("selected: ", item.name);
-    // console.log("selected: ", str);
   };
 
   const handleOnFocus = () => {
@@ -107,13 +110,16 @@ export default function Header() {
               </li>
             ))}
             <li>
-              <div id="search_bar">
-                <ReactSearchAutocomplete
-                  items={names}
-                  onSearch={handleOnSearch}
-                  onSelect={handleOnSelect}
-                  formatResult={formatResult}
-                />
+              <div className="search_wrapper" style={{ display: "flex" }}>
+                <div style={{ color: "#fff" }}>Find a Pokemon:</div>
+                <div id="search_bar">
+                  <ReactSearchAutocomplete
+                    items={names}
+                    onSearch={handleOnSearch}
+                    onSelect={handleOnSelect}
+                    formatResult={formatResult}
+                  />
+                </div>
               </div>
             </li>
           </ul>
@@ -136,7 +142,11 @@ export default function Header() {
         </nav>
       ) : (
         <>
-          <Menu>
+          <Menu
+            isOpen={hamburgerOpened}
+            onOpen={hamburgerHandler}
+            onClose={hamburgerHandler}
+          >
             <div id="mobile_bar">
               <ReactSearchAutocomplete
                 items={names}
@@ -146,7 +156,12 @@ export default function Header() {
               />
             </div>
             {nav_model.map((m, k) => (
-              <Link to={m.url} data-item={m.text} key={k}>
+              <Link
+                onClick={hamburgerHandler}
+                to={m.url}
+                data-item={m.text}
+                key={k}
+              >
                 {m.text}
               </Link>
             ))}

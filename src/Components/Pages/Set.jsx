@@ -32,9 +32,9 @@ export default function Set() {
   const [edition, setEdition] = useState(0);
   const [hasFirstEdition, setHasFirstEdition] = useState(0);
   const [sortMethod, setSortMethod] = useState("ID");
-
   const { set_id } = useParams();
   const toSearch = useSelector((state) => state.search.value);
+  var firstSetIs = "";
 
   console.log("toSearch is: ", toSearch);
 
@@ -43,6 +43,7 @@ export default function Set() {
       console.log("findCardsBySet: ", set);
       setCards(set.sort((c1, c2) => c1.id.split("-")[1] - c2.id.split("-")[1]));
       // setHasFirstEdition(Object.keys(set[0].tcgplayer.prices).length > 1);
+
       setReady(true);
     });
   };
@@ -51,6 +52,7 @@ export default function Set() {
       console.log("findCardsByName: ", set);
       setCards(set.sort((c1, c2) => c1.id.split("-")[1] - c2.id.split("-")[1]));
       // setHasFirstEdition(Object.keys(set[0].tcgplayer.prices).length > 1);
+
       setReady(true);
     });
   };
